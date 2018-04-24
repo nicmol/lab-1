@@ -23,6 +23,9 @@ namespace FutureValue
 
         // TODO: Declare the rectangular array and the row index here
 
+        string[,] calculateValue = new string[10, 4];
+        int row = 0;
+
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             try
@@ -39,11 +42,18 @@ namespace FutureValue
                     decimal interestRateMonthly = interestRateYearly / 12 / 100;
 
                     decimal futureValue = CalculateFutureValue(
-                        monthlyInvestment, interestRateMonthly, months);
+                    monthlyInvestment, interestRateMonthly, months);
                     txtFutureValue.Text = futureValue.ToString("c");
                     txtMonthlyInvestment.Focus();
 
                     // TODO: Add the calculation to the rectangular array here
+                    decimal interestRate = interestRateYearly / 100;
+                    calculateValue[row, 0] = monthlyInvestment.ToString("c");
+                    calculateValue[row, 1] = interestRate.ToString("p");
+                    calculateValue[row, 2] = years.ToString();
+                    calculateValue[row, 3] = futureValue.ToString("c");
+                    row++;
+
                 }
             }
             catch (Exception ex)
@@ -57,7 +67,23 @@ namespace FutureValue
         private void btnExit_Click(object sender, EventArgs e)
         {
             // TODO: Display the rectangular array in a dialog box here
+           
+
+            string message = "Inv/Mo.\tRate\tYears\tFuture Value\n";
+            for (int i = 0; i < calculateValue.GetLength(0); i++)
+            {
+                if (calculateValue[i, 0] != null)
+                {
+                    for (int j = 0; j < calculateValue.GetLength(1); j++)
+                    {
+                        message += calculateValue[i, j] + "\t";
+                    }
+                    message += "\n";
+                }
+                MessageBox.Show(message, "Future Value Calculations");
+            }
             this.Close();
+
         }
 
         public bool IsValidData()
