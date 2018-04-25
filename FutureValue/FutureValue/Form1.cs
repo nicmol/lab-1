@@ -80,8 +80,9 @@ namespace FutureValue
                     }
                     message += "\n";
                 }
-                MessageBox.Show(message, "Future Value Calculations");
+                
             }
+            MessageBox.Show(message, "Future Value Calculations");
             this.Close();
 
         }

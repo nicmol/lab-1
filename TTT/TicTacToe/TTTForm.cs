@@ -33,7 +33,7 @@ namespace TicTacToe
         const int ROW = 1;
         const int COLUMN = 2;
         const int DIAGONAL = 3;
-        private int board;
+        
         // This method takes a row and column as parameters and 
         // returns a reference to a label on the form in that position
         private Label GetSquare(int row, int column)
@@ -59,7 +59,7 @@ namespace TicTacToe
         private bool IsRowWinner(int row)
                   
         {
-            int board;
+            int board = 0;
             string symbol = board[row, 0];
                 for (int col = 1; col < SIZE; col++)
                 {
@@ -420,6 +420,13 @@ namespace TicTacToe
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        public override bool Equals(object obj)
+        {
+            var form = obj as TTTForm;
+            return form != null &&
+                   board == form.board;
         }
     }
 }
