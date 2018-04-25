@@ -30,6 +30,7 @@ namespace Test_Score_List
                 while (!inputFile.EndOfStream)
                 {
                     // TODO:  add the current score from the file into the list
+                    scoresList.Add(int.Parse(inputFile.ReadLine()));
                 }
 
                 // Close the file.
@@ -44,22 +45,31 @@ namespace Test_Score_List
 
         // The DisplayScores method displays the contents of the
         // scoresList parameter in the ListBox control.
-        private void DisplayScores(/* TODO:  add the parameter here */)
+        private void DisplayScores(List<int> scoresList/* TODO:  add the parameter here */)
         {
             // TODO:  iterate through the list
             // add each item from the list to the list box
+            foreach (int score in scoresList)
+            {
+                testScoresListBox.Items.Add(score);
+            }
         }
 
         // The Average method returns the average of the values
         // in the scoresList parameter.
-        private double Average(/* TODO:  add the parameter here */)
+        private double Average(List<int> scoresList/* TODO:  add the parameter here */)
         {
             int total = 0;      // Accumulator
             double average;     // To hold the average
 
             // TODO:  Calculate the total of the scores.
+            foreach (int score in scoresList)
+            {
+                total += score;
+            }
 
             // Calculate the average of the scores.
+            average = (double)total / scoresList.Count;
 
             // Return the average.
             return average;
@@ -67,13 +77,21 @@ namespace Test_Score_List
 
         // The AboveAverage method returns the number of
         // above average scores in scoresList.
-        private int AboveAverage(/* TODO:  add the parameter here */)
+        private int AboveAverage(List<int> scoresList/* TODO:  add the parameter here */)
         {
             int numAbove = 0;       // Accumulator
 
             // TODO:  Get the average score.
+            double avg = Average(scoresList);
 
             // TODO:  Count the number of above average scores.
+            foreach (int score in scoresList)
+            {
+                if(score > avg)
+                {
+                    numAbove++;
+                }
+            }
 
             // Return the number of above average scores.
             return numAbove;
@@ -81,13 +99,21 @@ namespace Test_Score_List
 
         // The BelowAverage method returns the number of
         // below average scores in scoresList.
-        private int BelowAverage(/* TODO:  add the parameter here */)
+        private int BelowAverage(List<int> scoresList/* TODO:  add the parameter here */)
         {
             int numBelow = 0;       // Accumulator
 
             // TODO:  Get the average score.
+            double avg = Average(scoresList);
 
             // TODO:  Count the number of below average scores.
+            foreach (int score in scoresList)
+            {
+                if(score < avg)
+                {
+                    numBelow++;
+                }
+            }
 
             // Return the number of below average scores.
             return numBelow;
@@ -100,18 +126,24 @@ namespace Test_Score_List
             int numBelowAverage;    // Number of below average scores
 
             // TODO:  Create a List to hold the scores.
+            List<int> scoresList = new List<int>();
 
             // TODO:  Read the scores from the file into the List.
+            ReadScores(scoresList);
 
             // TODO:  Display the scores.
+            DisplayScores(scoresList);
 
             // TODO:  Display the average score.
+            averageScore = Average(scoresList);
             averageLabel.Text = averageScore.ToString("n1");
 
             // TODO:  Display the number of above average scores.
+            numAboveAverage = AboveAverage(scoresList);
             aboveAverageLabel.Text = numAboveAverage.ToString();
 
             // TODO:  Display the number of below average scores.
+            numBelowAverage = BelowAverage(scoresList);
             belowAverageLabel.Text = numBelowAverage.ToString();
         }
 
