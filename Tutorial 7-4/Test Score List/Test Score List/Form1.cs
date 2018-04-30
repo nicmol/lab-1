@@ -19,7 +19,7 @@ namespace Test_Score_List
 
         // The ReadScores method reads the scores from the
         // TestScores.txt file into the scoresList parameter.
-        private void ReadScores(List<int> scoresList)
+        private void ReadScores(List<int> scoresList) //passing the list by reference
         {
             try
             {

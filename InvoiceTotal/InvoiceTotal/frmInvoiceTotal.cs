@@ -22,9 +22,9 @@ namespace InvoiceTotal
 		}
 
         // TODO: declare class variables for array and list here
-         decimal[] invoiceTotalsArray = new decimal[5];
-         int totalsIndex = 0;
-        List<decimal> invoiceTotalsList = new List<decimal>();
+            decimal[] invoiceTotalsArray = new decimal[5];
+            int totalsIndex = 0;
+            List<decimal> invoiceTotalsList = new List<decimal>();
 
         private void btnCalculate_Click(object sender, EventArgs e)
 		{
